@@ -1,10 +1,6 @@
-from math import factorial
-
-def combinations (k, n):
-    return factorial(n) // (factorial(k) * factorial(n-k))
-
-def arrangements (k, n):
-    return factorial(n) // factorial (n-k)
+import sys
+sys.path.insert(1, 'C:/Users/1645295/Desktop/Разработчик/Теория вероятности/Семинар 1/')
+from my_library import combinations, arrangements
 
 # 1. Из колоды в 52 карты извлекаются случайным образом 4 карты. 
 # a) Найти вероятность того, что все карты – крести. 
