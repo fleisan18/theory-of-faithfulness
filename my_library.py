@@ -11,6 +11,8 @@ def Bernoulli (k, n, p):
 
 def Poisson_distribution (k, n, p):
     l = n * p
-    return l**k * e**(-l) / factorial(l) 
+    return l**k / (factorial(k) * e**(l))
 
+print(Poisson_distribution(0, 5000, 0.0004))
+print(2**0 / (factorial(0) * e**(2)))
 
