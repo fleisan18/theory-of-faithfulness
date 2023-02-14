@@ -1,4 +1,5 @@
-import numpy as np
+from my_library import combinations as combs
+
 # Даны значения зарплат из выборки выпускников: 100, 80, 75, 77, 89, 33, 45, 25, 65, 17, 30, 24, 57, 55, 70, 75, 65, 84, 90, 150. 
 # Посчитать (желательно без использования статистических методов наподобие std, var, mean) 
 # - среднее арифметическое, 
@@ -22,11 +23,29 @@ print(f'Среднее квадратическое отклонение для 
 dev_selection = unbiased_var**(0.5)
 print(f'Среднее квадратическое отклонение для выборки = {dev_selection}')
 
-
 # В первом ящике находится 8 мячей, из которых 5 - белые. 
 # Во втором ящике - 12 мячей, из которых 5 белых. 
 # Из первого ящика вытаскивают случайным образом два мяча, из второго - 4. 
 # Какова вероятность того, что 3 мяча белые?
+# 1. ББ+БННН
+# 2. БН+ББНН
+# 3. НН+БББН
+box_1 = 8
+white = 5
+box_2 = 12
+pulled_1 = 2
+pulled_2 = 4
+
+result = (combs(pulled_1, white) / combs(pulled_1, box_1) 
+        * combs(pulled_2 - 3, white) * combs(pulled_2 - 1, box_2 - white) / combs(pulled_2, box_2)
+        
+        + combs(pulled_1 - 1, white) * combs(pulled_1 - 1, box_1 - white) / combs(pulled_1, box_1) 
+        * combs(pulled_2 - 2, white) * combs(pulled_2 - 2, box_2 - white) / combs(pulled_2, box_2)
+
+        + combs(pulled_1, box_1 - white) / combs(pulled_1, box_1) 
+        * combs(pulled_2 - 1, white) * combs(pulled_2 - 3, box_2 - white) / combs(pulled_2, box_2)
+        )
+print(f'Вероятность того, что 3 мяча белые = {result}')
 
 # На соревновании по биатлону один из трех спортсменов стреляет и попадает в мишень. 
 # Вероятность попадания для первого спортсмена равна 0.9, для второго — 0.8, для третьего — 0.6. 
